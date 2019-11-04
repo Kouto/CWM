@@ -91,6 +91,7 @@
             this.textBox_o_conditions1 = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.group_floors.SuspendLayout();
             this.group_mounting_joint.SuspendLayout();
             this.group_mounting_conditions.SuspendLayout();
@@ -548,7 +549,6 @@
             // 
             // radioButton5
             // 
-            this.radioButton5.AutoSize = true;
             this.radioButton5.Checked = true;
             this.radioButton5.Location = new System.Drawing.Point(6, 287);
             this.radioButton5.Name = "radioButton5";
@@ -557,6 +557,7 @@
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Сквозной монтаж (анкера, саморезы)";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
             // radioButton4
             // 
@@ -568,6 +569,7 @@
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Анкерные пластины";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // m_conditions6
             // 
@@ -707,6 +709,7 @@
             this.o_conditions1.TabIndex = 0;
             this.o_conditions1.Text = "Подготовка рабочего места";
             this.o_conditions1.UseVisualStyleBackColor = true;
+            this.o_conditions1.CheckedChanged += new System.EventHandler(this.o_conditions1_CheckedChanged);
             // 
             // textBox_o_conditions1
             // 
@@ -714,6 +717,7 @@
             this.textBox_o_conditions1.Name = "textBox_o_conditions1";
             this.textBox_o_conditions1.Size = new System.Drawing.Size(80, 26);
             this.textBox_o_conditions1.TabIndex = 4;
+            this.textBox_o_conditions1.TextChanged += new System.EventHandler(this.textBox_o_conditions1_TextChanged);
             // 
             // label19
             // 
@@ -728,16 +732,27 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(13, 507);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(899, 494);
+            this.richTextBox1.Size = new System.Drawing.Size(899, 450);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label24.Location = new System.Drawing.Point(803, 960);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(109, 16);
+            this.label24.TabIndex = 8;
+            this.label24.Text = "© Ishibashi Kouto";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 1061);
+            this.ClientSize = new System.Drawing.Size(944, 961);
+            this.Controls.Add(this.label24);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.group_other_conditions);
             this.Controls.Add(this.group_mounting_conditions);
@@ -748,6 +763,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Калькулятор монтажных часов";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.group_floors.ResumeLayout(false);
@@ -759,6 +775,7 @@
             this.group_other_conditions.ResumeLayout(false);
             this.group_other_conditions.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -827,6 +844,7 @@
         private System.Windows.Forms.TextBox quality_fifthfloor;
         private System.Windows.Forms.CheckBox ch_fifthfloor;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label24;
     }
 }
 
