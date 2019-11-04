@@ -33,6 +33,7 @@ namespace CWM
             textBox_m_conditions6.Enabled = false;
             textBox_o_conditions1.Enabled = false;
         }
+        #region //Переменные
         int q_firstfloor;
         int q_secondfloor;
         int q_thirdfloor;
@@ -52,6 +53,11 @@ namespace CWM
         int inside_platbands = 2;//внутренние откосы, два часа на 1 окно
         float anchor_plate = 1f;//окно 1200*1200 на анкерные пластины
         float anchor = 1f;//окно 1200*1200 на анкера
+        float pr_3028;
+        float mizukiri = 20f;
+
+
+
         float res_firstfloor = 0f;
         float res_secondfloor = 0f;
         float res_thirdfloor = 0f;
@@ -64,7 +70,7 @@ namespace CWM
         float res_3 = 0f;
         float res_4 = 0f;
         float res_5 = 0f;
-
+        #endregion
         private void button1_Click(object sender, EventArgs e)
         {
             perimeter_firstfloor.Text = perimeter_firstfloor.Text.Replace('.', ',');
@@ -132,25 +138,40 @@ namespace CWM
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                res_1 = m_conditions1.Checked == true ? q_firstfloor * inside_platbands : 0;
-                res_2 = m_conditions1.Checked == true ? q_secondfloor * inside_platbands : 0;
-                res_3 = m_conditions1.Checked == true ? q_thirdfloor * inside_platbands : 0;
-                res_4 = m_conditions1.Checked == true ? q_fourthfloor * inside_platbands : 0;
-                res_5 = m_conditions1.Checked == true ? q_fifthfloor * inside_platbands : 0;
 
-               //Калькуляция
+                float i_pl_1f = m_conditions1.Checked == true ? q_firstfloor * inside_platbands : 0;
+                float i_pl_2f = m_conditions1.Checked == true ? q_secondfloor * inside_platbands : 0;
+                float i_pl_3f = m_conditions1.Checked == true ? q_thirdfloor * inside_platbands : 0;
+                float i_pl_4f = m_conditions1.Checked == true ? q_fourthfloor * inside_platbands : 0;
+                float i_pl_5f = m_conditions1.Checked == true ? q_fifthfloor * inside_platbands : 0;
+                float o_pl_1f = m_conditions2.Checked == true ? q_firstfloor * outside_platbands : 0;
+                float o_pl_2f = m_conditions2.Checked == true ? q_secondfloor * outside_platbands : 0;
+                float o_pl_3f = m_conditions2.Checked == true ? q_thirdfloor * outside_platbands : 0;
+                float o_pl_4f = m_conditions2.Checked == true ? q_fourthfloor * outside_platbands : 0;
+                float o_pl_5f = m_conditions2.Checked == true ? q_fifthfloor * outside_platbands : 0;
+
+
+                res_1 = i_pl_1f + o_pl_1f;
+                res_2 = i_pl_2f + o_pl_2f;
+                res_3 = i_pl_3f + o_pl_3f;
+                res_4 = i_pl_4f + o_pl_4f;
+                res_5 = i_pl_5f + o_pl_5f;
+                TimeSpan time = new TimeSpan();
+
+                //Калькуляция
                 res_firstfloor = (p_firstfloor / meter_per_hour) + res_1;
                 res_secondfloor = (p_secondfloor / meter_per_hour) + res_2;
                 res_thirdfloor = (p_thirdfloor / meter_per_hour) + res_3;
                 res_fourthfloor = (p_fourthfloor / meter_per_hour) + res_4;
                 res_fifthfloor = (p_fifthfloor / meter_per_hour) + res_5;
                 float summ = res_firstfloor + res_secondfloor + res_thirdfloor + res_fourthfloor + res_fifthfloor;
-                richTextBox1.Text = $"На монтаж {q_firstfloor} изделий на 1-м этаже, понадобится {res_firstfloor} ч.\n" +
-                    $"На монтаж {q_secondfloor} изделий на 2-м этаже, понадобится {res_secondfloor} ч.\n" +
-                    $"На монтаж {q_thirdfloor} изделий на 3-м этаже,понадобится {res_thirdfloor} ч.\n" +
-                    $"На монтаж {q_fourthfloor} изделий на 4-м этаже, понадобится {res_fourthfloor} ч.\n" +
-                    $"На монтаж {q_fifthfloor} изделий на 5-м этаже, понадобится {res_fifthfloor} ч.\n";
-                richTextBox1.Text += $"Общее количество часов на монтаж = {summ}";
+                richTextBox1.Text = $"На монтаж {q_firstfloor} изделий на 1-м этаже, понадобится {TimeSpan.FromHours(res_firstfloor)}.\n" +
+                    $"На монтаж {q_secondfloor} изделий на 2-м этаже, понадобится {TimeSpan.FromHours(res_secondfloor)}.\n" +
+                    $"На монтаж {q_thirdfloor} изделий на 3-м этаже,понадобится {TimeSpan.FromHours(res_thirdfloor)}.\n" +
+                    $"На монтаж {q_fourthfloor} изделий на 4-м этаже, понадобится {TimeSpan.FromHours(res_fourthfloor)}.\n" +
+                    $"На монтаж {q_fifthfloor} изделий на 5-м этаже, понадобится {TimeSpan.FromHours(res_fifthfloor)}.\n";
+                richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Bold);
+                richTextBox1.Text += $"Общее количество часов на монтаж = {TimeSpan.FromHours(summ)}";
 
             }
             catch (Exception ex)
@@ -213,7 +234,7 @@ namespace CWM
                 quality_firstfloor.Clear();
                 perimeter_firstfloor.Clear();
                 q_firstfloor = 0;
-                p_firstfloor=0;
+                p_firstfloor = 0;
             }
         }
 
@@ -326,13 +347,15 @@ namespace CWM
 
         private void m_conditions1_CheckedChanged(object sender, EventArgs e)
         {
-            //if (m_conditions1.Checked)
-            //{
-            //    res_1 = q_firstfloor * inside_platbands;
-            //}
+
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void m_conditions2_CheckedChanged(object sender, EventArgs e)
         {
 
         }

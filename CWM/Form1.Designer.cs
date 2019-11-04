@@ -618,6 +618,7 @@
             this.m_conditions2.TabIndex = 4;
             this.m_conditions2.Text = "Внешняя обанличка";
             this.m_conditions2.UseVisualStyleBackColor = true;
+            this.m_conditions2.CheckedChanged += new System.EventHandler(this.m_conditions2_CheckedChanged);
             // 
             // label18
             // 
