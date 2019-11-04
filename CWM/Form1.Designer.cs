@@ -590,6 +590,7 @@
             this.m_conditions5.TabIndex = 4;
             this.m_conditions5.Text = "Наличие дверной м.с.";
             this.m_conditions5.UseVisualStyleBackColor = true;
+            this.m_conditions5.CheckedChanged += new System.EventHandler(this.m_conditions5_CheckedChanged);
             // 
             // m_conditions4
             // 

@@ -203,7 +203,7 @@ namespace CWM
                         "Ошибка в позиции \"Кол-во помещений\"", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
-                    o_c = o_c * 1/2;///1/2 от часа на кол-во помещений
+                    o_c = o_c * 1 / 2;///1/2 от часа на кол-во помещений
                 }
                 else
                 {
@@ -216,7 +216,6 @@ namespace CWM
                 res_3 = i_pl_3f + o_pl_3f + m_pr_3028_2f + m_mi_3f + m_m_3f;
                 res_4 = i_pl_4f + o_pl_4f + m_pr_3028_2f + m_mi_4f + m_m_4f;
                 res_5 = i_pl_5f + o_pl_5f + m_pr_3028_2f + m_mi_5f + m_m_5f;
-                TimeSpan time = new TimeSpan();
 
                 //Калькуляция
                 res_firstfloor = (p_firstfloor / meter_per_hour) + res_1;
@@ -224,17 +223,26 @@ namespace CWM
                 res_thirdfloor = (p_thirdfloor / meter_per_hour) + res_3;
                 res_fourthfloor = (p_fourthfloor / meter_per_hour) + res_4;
                 res_fifthfloor = (p_fifthfloor / meter_per_hour) + res_5;
-                float summ = res_firstfloor + res_secondfloor + res_thirdfloor + res_fourthfloor + res_fifthfloor+o_c;
+                float summ = res_firstfloor + res_secondfloor + res_thirdfloor + res_fourthfloor + res_fifthfloor + o_c;
 
-                richTextBox1.Text = $"На монтаж {q_firstfloor} изделий на 1-м этаже, понадобится {TimeSpan.FromHours(res_firstfloor)}.\n" +
-                    $"На монтаж {q_secondfloor} изделий на 2-м этаже, понадобится {TimeSpan.FromHours(res_secondfloor)}.\n" +
-                    $"На монтаж {q_thirdfloor} изделий на 3-м этаже,понадобится {TimeSpan.FromHours(res_thirdfloor)}.\n" +
-                    $"На монтаж {q_fourthfloor} изделий на 4-м этаже, понадобится {TimeSpan.FromHours(res_fourthfloor)}.\n" +
-                    $"На монтаж {q_fifthfloor} изделий на 5-м этаже, понадобится {TimeSpan.FromHours(res_fifthfloor)}.\n" +
-                    $"На подготовку {textBox_o_conditions1.Text} помещений(я), понадобится {TimeSpan.FromHours(o_c)}.\n";
-                richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Bold);
-                richTextBox1.Text += $"Общее количество часов на монтаж = {TimeSpan.FromHours(summ)}";
-
+                DateTime now_dt = DateTime.Now;
+                TimeSpan ts1 = TimeSpan.FromHours(res_firstfloor);
+                TimeSpan ts2 = TimeSpan.FromHours(res_secondfloor);
+                TimeSpan ts3 = TimeSpan.FromHours(res_thirdfloor);
+                TimeSpan ts4 = TimeSpan.FromHours(res_fourthfloor);
+                TimeSpan ts5 = TimeSpan.FromHours(res_fifthfloor);
+                TimeSpan total_ts = TimeSpan.FromHours(summ);
+                richTextBox1.Text = $"На монтаж {q_firstfloor} изделий на 1-м этаже, понадобится {ts1.ToString(@"dd\дhh\чmm\м")}.\n";
+                richTextBox1.Text += $"На монтаж {q_secondfloor} изделий на 2-м этаже, понадобится {ts2.ToString(@"dd\дhh\чmm\м")}.\n";
+                richTextBox1.Text += $"На монтаж {q_thirdfloor} изделий на 3-м этаже, понадобится {ts3.ToString(@"dd\дhh\чmm\м")}.\n";
+                richTextBox1.Text += $"На монтаж {q_fourthfloor} изделий на 4-м этаже, понадобится {ts4.ToString(@"dd\дhh\чmm\м")}.\n";
+                richTextBox1.Text += $"На монтаж {q_fifthfloor} изделий на 5-м этаже, понадобится {ts5.ToString(@"dd\дhh\чmm\м")}.\n";
+                richTextBox1.Text += "\r\n";
+                richTextBox1.Text += $"Общее количество часов на монтаж = {total_ts.ToString(@"dd\дhh\чmm\м")}";
+                richTextBox1.Text += "\r";
+                richTextBox1.Text += "В расчет не включены:\n★затраты на приемку и проверку грузу;\n★Закупка материалов для монтажа;\n★Логистика;\n";
+                richTextBox1.Text += "________________\r";
+                richTextBox1.Text += $"Дата расчета: {now_dt.ToLongDateString()}";
             }
             catch (Exception ex)
             {
@@ -244,6 +252,12 @@ namespace CWM
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            ch_firstfloor.Checked = false;
+            ch_secondfloor.Checked = false;
+            ch_thirdfloor.Checked = false;
+            ch_fourthfloor.Checked = false;
+            ch_fifthfloor.Checked = false;
+
             richTextBox1.Clear();
             quality_firstfloor.Clear();
             perimeter_firstfloor.Clear();
@@ -271,7 +285,17 @@ namespace CWM
             textBox_m_conditions6.Enabled = false;
             textBox_o_conditions1.Enabled = false;
 
+            m_conditions1.Checked = false;
+            m_conditions2.Checked = false;
+            m_conditions3.Checked = false;
+            m_conditions4.Checked = false;
+            m_conditions5.Checked = false;
+            m_conditions6.Checked = false;
             o_conditions1.Checked = false;
+            o_conditions2.Checked = false;
+            o_conditions3.Checked = false;
+            o_conditions4.Checked = false;
+
         }
 
         private void group_other_conditions_Enter(object sender, EventArgs e)
@@ -454,6 +478,19 @@ namespace CWM
         private void textBox_o_conditions1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void m_conditions5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_conditions5.Checked)
+            {
+                textBox_m_conditions5.Enabled = true;
+            }
+            else
+            {
+                textBox_m_conditions5.Enabled = false;
+                textBox_m_conditions5.Clear();
+            }
         }
     }
 }
