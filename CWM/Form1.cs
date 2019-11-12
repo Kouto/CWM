@@ -38,6 +38,7 @@ namespace CWM
             textBox_o_conditions1.Enabled = false;
             o_conditions5.Checked = false;
             textBox_o_conditions5.Enabled = false;
+
         }
 
         #region //Переменные
@@ -342,26 +343,49 @@ namespace CWM
                 TimeSpan ts_mounting = TimeSpan.FromHours(m_summ);
                 TimeSpan total_ts = TimeSpan.FromHours(total_summ);
 
-                richTextBox1.Text = ch_firstfloor.Checked ? $"На монтаж {q_firstfloor} изделий на 1-м этаже, понадобится {ts1.ToString(@"dd\дhh\чmm\м")}.\n" : null;
+
+                richTextBox1.Text = txt.Text;//Название объекта
+                richTextBox1.Text += "\r\n";//строчный пробел
+                richTextBox1.Text += "Условия расчета:\n";
+                richTextBox1.Text += radioButton1.Checked ? "1) Силикон и вилатерм.\n" : null;
+                richTextBox1.Text += radioButton2.Checked ? "1) Монтажная пена.\n" : null;
+                richTextBox1.Text += radioButton3.Checked ? "1) ПСУЛ illmond.\n" : null;
+                richTextBox1.Text += radioButton6.Checked ? "1) ПВХ уголки по аналогии с AMS Aioi.\n" : null;
+                richTextBox1.Text += m_conditions1.Checked ? "2) Внутренняя обанличка: есть.\n" : "2) Внутренняя обанличка: нет.\n";
+                richTextBox1.Text += m_conditions2.Checked ? "3) Внешняя обанличка: есть.\n" : "3) Внешняя обналичка: нет.\n";
+                richTextBox1.Text += m_conditions3.Checked ? "4) Профиль 3028: есть.\n" : "4) Профиль 3028: нет.\n";
+                richTextBox1.Text += m_conditions4.Checked ? "5) Водоотлив: есть.\n" : "5) Водоотлив: нет.\n";
+                richTextBox1.Text += m_conditions5.Checked ? $"6) Дверная москитная сетка: есть, {textBox_m_conditions5.Text}шт.\n" : "6) Дверная москитная сетка: нет.\n";
+                richTextBox1.Text += m_conditions6.Checked ? $"7) Примат: есть, {textBox_m_conditions6.Text}шт.\n" : "7) Примат: нет.\n";
+                richTextBox1.Text += radioButton4.Checked ? "8) Монтаж на анкерные пластины.\n" : null;
+                richTextBox1.Text += radioButton5.Checked ? "8) Сквозной монтаж (анкера, саморезы).\n" : null;
+                richTextBox1.Text += o_conditions1.Checked ? $"9) Подготовка рабочего места: есть, кол-во помещений: {textBox_o_conditions1.Text}.\n" : "9) Подготовка рабочего места: нет.\n";
+                richTextBox1.Text += o_conditions1.Checked ? $"10) Уборка рабочего места: есть, кол-во помещений: {textBox_o_conditions1.Text}.\n" : "10) Уборка рабочего места: нет.\n";
+                richTextBox1.Text += o_conditions3.Checked ? "11) Мытье профиля, стекол: есть.\n" : "11) Мытье профиля, стекол: нет.\n";
+                richTextBox1.Text += o_conditions4.Checked ? "12) Вероятность дождя. +20% ко времени монтажных часов: есть.\n" : "12) Вероятность дождя. +20% ко времени монтажных часов: нет.\n";
+                richTextBox1.Text += o_conditions5.Checked ? $"13) Демонтаж: есть.\n" : "13) Демонтаж: нет.\n";
+
+
+                richTextBox1.Text += ch_firstfloor.Checked ? $"На монтаж {q_firstfloor} изделий на 1-м этаже, понадобится {ts1.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_secondfloor.Checked ? $"На монтаж {q_secondfloor} изделий на 2-м этаже, понадобится {ts2.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_thirdfloor.Checked ? $"На монтаж {q_thirdfloor} изделий на 3-м этаже, понадобится {ts3.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_fourthfloor.Checked ? $"На монтаж {q_fourthfloor} изделий на 4-м этаже, понадобится {ts4.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_fifthfloor.Checked ? $"На монтаж {q_fifthfloor} изделий на 5-м этаже, понадобится {ts5.ToString(@"dd\дhh\чmm\м")}.\n" : null;
-                richTextBox1.Text += "\r\n";
+                richTextBox1.Text += "\r\n";//строчный пробел
                 richTextBox1.Text += ch_firstfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 1-го этажа на {rain_f1.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_secondfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 2-го этажа на {rain_f2.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_thirdfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 3-го этажа на {rain_f3.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_fourthfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 4-го этажа на {rain_f4.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_fifthfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 5-го этажа на {rain_f5.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += o_conditions5.Checked ? $"На демонтаж P={p_dis}м2 потребуется {ts_dis.ToString(@"dd\дhh\чmm\м")}.\n" : null;
-                richTextBox1.Text += "\r\n";
-                richTextBox1.Text += $"Общее количество часов на монтаж = {ts_mounting.ToString(@"dd\дhh\чmm\м")}";
-                richTextBox1.Text += "\r\n";
+                richTextBox1.Text += "\r\n";//строчный пробел
+                richTextBox1.Text += $"Общее количество часов на монтаж = {ts_mounting.ToString(@"dd\дhh\чmm\м")}\r\n";
+                richTextBox1.Text += "\r\n";//строчный пробел
 
                 richTextBox1.Text += o_conditions5.Checked ? $"Общее количество часов на монтаж и демонтаж = {total_ts.ToString(@"dd\дhh\чmm\м")}" : null;
 
                 richTextBox1.Text += "\r";
-                richTextBox1.Text += "В расчет не включены:\n★Время на соединение конструкций между собой не учитываются, если таквые имеются;\n★Затраты на приемку и проверку грузу;\n★Закупка материалов для монтажа;\n★Логистика;\n";
+                richTextBox1.Text += "В расчет не включены:\n★Время на соединение конструкций между собой не учитываются, если таквые имеются;\n★Затраты на приемку и проверку груза;\n★Закупка материалов для монтажа;\n★Логистика;\n";
                 richTextBox1.Text += "________________\r";
                 richTextBox1.Text += $"Дата расчета: {now_dt.ToLongDateString()}";
 
@@ -402,6 +426,7 @@ namespace CWM
                 MessageBox.Show("Сделайте снимок экрана и покажите создателю!!!2\r\n\r\n" + ex.ToString(), "Критическая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #region //Others
         private void button2_Click(object sender, EventArgs e)
         {
             ch_firstfloor.Checked = false;
@@ -695,5 +720,16 @@ namespace CWM
                 meter_per_hour = pvcangle;
             }
         }
+
+        private void logo_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.karvi.jp/");
+        }
+
+        private void txt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+#endregion
