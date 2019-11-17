@@ -37,7 +37,20 @@ namespace CWM
             textBox_m_conditions6.Enabled = false;
             textBox_o_conditions1.Enabled = false;
             o_conditions5.Checked = false;
+            o_conditions6.Checked = false;
+            o_conditions7.Checked = false;
+            o_conditions8.Checked = false;
+            o_conditions6.Enabled = false;
+            o_conditions7.Enabled = false;
+            o_conditions8.Enabled = false;
+            o_conditions9.Enabled = false;
             textBox_o_conditions5.Enabled = false;
+            textBox_o_conditions7.Enabled = false;
+            textBox_o_conditions8.Enabled = false;
+            textBox_o_conditions9.Enabled = false;
+
+
+
 
         }
 
@@ -53,6 +66,12 @@ namespace CWM
         float p_thirdfloor = 0.0f;
         float p_fourthfloor = 0.0f;
         float p_fifthfloor = 0.0f;
+
+        float up = 57.6f;//Подъем 1 окна 1200*1200 за 10 мин на 1 этаж.
+        float up_2f = 0f;
+        float up_3f = 0f;
+        float up_4f = 0f;
+        float up_5f = 0f;
 
         float silicone = 1.8f; //1.8п.м. в час, окно 1200*1200
         float polyurethane_foam = 1.6f; //1.6п.м. в час, окно 1200*1200
@@ -109,9 +128,22 @@ namespace CWM
         float m_rain_f4;
         float m_rain_f5;
 
-        float dis = 2.4f; //2.4п.м. в час, окно 1200*1200
+        //float dis = 0f;
+        float dis_1_wood = 2.4f; //2.4п.м. в час, окно 1200*1200
+        float dis_1_concrete = 2.4f; //2.4п.м. в час, окно 1200*1200
+        float dis_2_wood = 14.4f; //4,8п.м. за 10 мин, окно 1200*1200
+        float dis_2_concrete = 28.8f; //4,8п.м. за 20 мин, окно 1200*1200
         float t_dis = 0f;
-        float p_dis = 0f;
+        float t_1wooddis = 0f;
+        float t_1concrete = 0f;
+        float t_2wooddis = 0f;
+        float t_2concrete = 0f;
+
+        float p_1wooddis = 0f;
+        float p_1concretedis = 0f;
+        float p_2wooddis = 0f;
+        float p_2concretedis = 0f;
+
 
         #endregion
         private void button1_Click(object sender, EventArgs e)
@@ -123,9 +155,24 @@ namespace CWM
             perimeter_fifthfloor.Text = perimeter_fifthfloor.Text.Replace('.', ',');
             textBox_o_conditions1.Text = textBox_o_conditions1.Text.Replace('.', ',');
             textBox_o_conditions5.Text = textBox_o_conditions5.Text.Replace('.', ',');
+            textBox_o_conditions7.Text = textBox_o_conditions7.Text.Replace('.', ',');
+            textBox_o_conditions8.Text = textBox_o_conditions8.Text.Replace('.', ',');
+            textBox_o_conditions9.Text = textBox_o_conditions9.Text.Replace('.', ',');
             try
             {
+                DateTime licens1 = DateTime.Now;
+                DateTime licens2 = new DateTime(2019, 12, 10, 00, 00, 0);
+                if (licens1 >= licens2)
+                {
+                    MessageBox.Show("Ограничения в правах доступа!", "Система", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Form1.ActiveForm.Close();
+                }
 
+                if (txt.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("Введите имя заказчика или объекта", "Ошибка в позиции \"Заказчик/объект\"", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txt.Select();
+                }
                 if (ch_firstfloor.Checked)
                 {
                     if (!int.TryParse(quality_firstfloor.Text, out q_firstfloor) |
@@ -172,6 +219,10 @@ namespace CWM
                         "Ошибка в позиции \"5-й этаж\"", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                t_1wooddis = 0f;//сброс значений по демонтажу
+                t_1concrete = 0f;//сброс значений по демонтажу
+                t_2wooddis = 0f;//сброс значений по демонтажу
+                t_2concrete = 0f;//сброс значений по демонтажу
 
                 if (radioButton1.Checked || radioButton2.Checked || radioButton3.Checked || radioButton6.Checked)
                 {
@@ -281,11 +332,11 @@ namespace CWM
                 }
 
                 //мытье профиля и стекла
-                win_clear_f1 = o_conditions3.Checked ? q_firstfloor * win_clear : 0;
-                win_clear_f2 = o_conditions3.Checked ? q_secondfloor * win_clear : 0;
-                win_clear_f3 = o_conditions3.Checked ? q_thirdfloor * win_clear : 0;
-                win_clear_f4 = o_conditions3.Checked ? q_fourthfloor * win_clear : 0;
-                win_clear_f5 = o_conditions3.Checked ? q_fifthfloor * win_clear : 0;
+                win_clear_f1 = o_conditions3.Checked ? p_firstfloor / 4.8f * win_clear : 0;
+                win_clear_f2 = o_conditions3.Checked ? p_secondfloor / 4.8f * win_clear : 0;
+                win_clear_f3 = o_conditions3.Checked ? p_thirdfloor / 4.8f * win_clear : 0;
+                win_clear_f4 = o_conditions3.Checked ? p_fourthfloor / 4.8f * win_clear : 0;
+                win_clear_f5 = o_conditions3.Checked ? p_fifthfloor / 4.8f * win_clear : 0;
 
                 res_1 = i_pl_1f + o_pl_1f + m_pr_3028_1f + m_mi_1f + m_m_1f;
                 res_2 = i_pl_2f + o_pl_2f + m_pr_3028_2f + m_mi_2f + m_m_2f;
@@ -293,22 +344,67 @@ namespace CWM
                 res_4 = i_pl_4f + o_pl_4f + m_pr_3028_2f + m_mi_4f + m_m_4f;
                 res_5 = i_pl_5f + o_pl_5f + m_pr_3028_2f + m_mi_5f + m_m_5f;
 
-                if (o_conditions5.Checked)
+                //Демонтаж
+                if (o_conditions5.Checked == true)
                 {
-                    if (float.TryParse(textBox_o_conditions5.Text, out p_dis))
+                    if (o_conditions6.Checked)//Демонтаж 1 нитки дерево
                     {
-                        t_dis = p_dis / dis;
+                        if (float.TryParse(textBox_o_conditions5.Text, out p_1wooddis))
+                        {
+                            t_1wooddis = p_1wooddis / dis_1_wood;
+                        }
+                        else
+                        {
+                            MessageBox.Show("❄Оставили поле пустым\n❄Ввели ноль или отрицательное число\n❄Ввели не числовое значение\n",
+                             "Ошибка в позиции \"Демонтаж\"", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
                     }
-                    else
+                    if (o_conditions7.Checked == true)//Демонтаж 1 бетон
                     {
-                        MessageBox.Show("❄Оставили поле пустым\n❄Ввели ноль или отрицательное число\n❄Ввели не числовое значение\n",
-                         "Ошибка в позиции \"Демонтаж\"", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (float.TryParse(textBox_o_conditions7.Text, out p_1concretedis))
+                        {
+                            t_1concrete = p_1concretedis / dis_1_concrete;
+                        }
+                        else
+                        {
+                            MessageBox.Show("❄Оставили поле пустым\n❄Ввели ноль или отрицательное число\n❄Ввели не числовое значение\n",
+                             "Ошибка в позиции \"Демонтаж\"", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    if (o_conditions8.Checked == true)//Демонтаж 2 нитки дерево
+                    {
+                        if (float.TryParse(textBox_o_conditions8.Text, out p_2wooddis))
+                        {
+                            t_2wooddis = p_2wooddis / dis_2_wood;
+                        }
+                        else
+                        {
+                            MessageBox.Show("❄Оставили поле пустым\n❄Ввели ноль или отрицательное число\n❄Ввели не числовое значение\n",
+                             "Ошибка в позиции \"Демонтаж\"", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    if (o_conditions9.Checked == true)//Демонтаж 2 нитки ПВХ
+                    {
+                        if (float.TryParse(textBox_o_conditions9.Text, out p_2concretedis))
+                        {
+                            t_2concrete = p_2concretedis / dis_2_concrete;
+                        }
+                        else
+                        {
+                            MessageBox.Show("❄Оставили поле пустым\n❄Ввели ноль или отрицательное число\n❄Ввели не числовое значение\n",
+                             "Ошибка в позиции \"Демонтаж\"", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
                 else
                 {
-                    t_dis = 0f;
+                    t_1wooddis = 0f;
+                    t_1concrete = 0f;
+                    t_2wooddis = 0f;
+                    t_2concrete = 0f;
                 }
+
 
                 //Калькуляция
                 res_firstfloor = (p_firstfloor / meter_per_hour) + res_1;
@@ -323,9 +419,18 @@ namespace CWM
                 m_rain_f4 = o_conditions4.Checked ? (res_fourthfloor / 100) * 20 : 0;
                 m_rain_f5 = o_conditions4.Checked ? (res_fifthfloor / 100) * 20 : 0;
 
-                float m_summ = res_firstfloor + res_secondfloor + res_thirdfloor + res_fourthfloor +
-                    res_fifthfloor + o_c1 + t_dmn + t_primat + win_clear_f1 + win_clear_f2 +
-                    win_clear_f3 + win_clear_f4 + win_clear_f5 + m_rain_f1 + m_rain_f2 + m_rain_f3 + m_rain_f4 + m_rain_f5;
+                up_2f = ch_secondfloor.Checked == true ? p_secondfloor / up : 0;
+                up_3f = ch_thirdfloor.Checked == true ? p_thirdfloor / up*1.5f : 0;
+                up_4f = ch_fourthfloor.Checked == true ? p_fourthfloor / up*2 : 0;
+                up_5f = ch_fifthfloor.Checked == true ? p_fifthfloor/up*2.5f : 0;
+
+                float sumwin_clear = win_clear_f1 + win_clear_f2 + win_clear_f3 + win_clear_f4 + win_clear_f5;
+                TimeSpan timeclear = TimeSpan.FromHours(sumwin_clear);
+
+                t_dis = t_1wooddis + t_1concrete + t_2wooddis + t_2concrete;
+
+                float m_summ = res_firstfloor + res_secondfloor + res_thirdfloor + res_fourthfloor + res_fifthfloor +
+                    o_c1 + t_dmn + t_primat + sumwin_clear + m_rain_f1 + m_rain_f2 + m_rain_f3 + m_rain_f4 + m_rain_f5+up_2f+up_3f+up_4f+up_5f;
                 float total_summ = m_summ + t_dis;
 
                 DateTime now_dt = DateTime.Now;
@@ -339,9 +444,20 @@ namespace CWM
                 TimeSpan rain_f3 = TimeSpan.FromHours(m_rain_f3);
                 TimeSpan rain_f4 = TimeSpan.FromHours(m_rain_f4);
                 TimeSpan rain_f5 = TimeSpan.FromHours(m_rain_f5);
-                TimeSpan ts_dis = TimeSpan.FromHours(t_dis);
+
+                TimeSpan t_up2f = TimeSpan.FromHours(up_2f);
+                TimeSpan t_up3f = TimeSpan.FromHours(up_3f);
+                TimeSpan t_up4f = TimeSpan.FromHours(up_4f);
+                TimeSpan t_up5f = TimeSpan.FromHours(up_5f);
+
+
                 TimeSpan ts_mounting = TimeSpan.FromHours(m_summ);
                 TimeSpan total_ts = TimeSpan.FromHours(total_summ);
+                TimeSpan ts_1wooddis = TimeSpan.FromHours(t_1wooddis);
+                TimeSpan ts_1concrete = TimeSpan.FromHours(t_1concrete);
+                TimeSpan ts_2wooddis = TimeSpan.FromHours(t_2wooddis);
+                TimeSpan ts_2concrete = TimeSpan.FromHours(t_2concrete);
+
 
 
                 richTextBox1.Text = txt.Text;//Название объекта
@@ -351,8 +467,8 @@ namespace CWM
                 richTextBox1.Text += radioButton2.Checked ? "1) Монтажная пена.\n" : null;
                 richTextBox1.Text += radioButton3.Checked ? "1) ПСУЛ illmond.\n" : null;
                 richTextBox1.Text += radioButton6.Checked ? "1) ПВХ уголки по аналогии с AMS Aioi.\n" : null;
-                richTextBox1.Text += m_conditions1.Checked ? "2) Внутренняя обанличка: есть.\n" : "2) Внутренняя обанличка: нет.\n";
-                richTextBox1.Text += m_conditions2.Checked ? "3) Внешняя обанличка: есть.\n" : "3) Внешняя обналичка: нет.\n";
+                richTextBox1.Text += m_conditions1.Checked ? "2) Внутренняя обналичка: есть.\n" : "2) Внутренняя обанличка: нет.\n";
+                richTextBox1.Text += m_conditions2.Checked ? "3) Внешняя обналичка: есть.\n" : "3) Внешняя обналичка: нет.\n";
                 richTextBox1.Text += m_conditions3.Checked ? "4) Профиль 3028: есть.\n" : "4) Профиль 3028: нет.\n";
                 richTextBox1.Text += m_conditions4.Checked ? "5) Водоотлив: есть.\n" : "5) Водоотлив: нет.\n";
                 richTextBox1.Text += m_conditions5.Checked ? $"6) Дверная москитная сетка: есть, {textBox_m_conditions5.Text}шт.\n" : "6) Дверная москитная сетка: нет.\n";
@@ -361,33 +477,40 @@ namespace CWM
                 richTextBox1.Text += radioButton5.Checked ? "8) Сквозной монтаж (анкера, саморезы).\n" : null;
                 richTextBox1.Text += o_conditions1.Checked ? $"9) Подготовка рабочего места: есть, кол-во помещений: {textBox_o_conditions1.Text}.\n" : "9) Подготовка рабочего места: нет.\n";
                 richTextBox1.Text += o_conditions1.Checked ? $"10) Уборка рабочего места: есть, кол-во помещений: {textBox_o_conditions1.Text}.\n" : "10) Уборка рабочего места: нет.\n";
-                richTextBox1.Text += o_conditions3.Checked ? "11) Мытье профиля, стекол: есть.\n" : "11) Мытье профиля, стекол: нет.\n";
+                richTextBox1.Text += o_conditions3.Checked ? $"11) Мытье профиля, стекол: есть, {timeclear.ToString(@"dd\дhh\чmm\м")}\n" : "11) Мытье профиля, стекол: нет.\n";
                 richTextBox1.Text += o_conditions4.Checked ? "12) Вероятность дождя. +20% ко времени монтажных часов: есть.\n" : "12) Вероятность дождя. +20% ко времени монтажных часов: нет.\n";
                 richTextBox1.Text += o_conditions5.Checked ? $"13) Демонтаж: есть.\n" : "13) Демонтаж: нет.\n";
-
 
                 richTextBox1.Text += ch_firstfloor.Checked ? $"На монтаж {q_firstfloor} изделий на 1-м этаже, понадобится {ts1.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_secondfloor.Checked ? $"На монтаж {q_secondfloor} изделий на 2-м этаже, понадобится {ts2.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_thirdfloor.Checked ? $"На монтаж {q_thirdfloor} изделий на 3-м этаже, понадобится {ts3.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_fourthfloor.Checked ? $"На монтаж {q_fourthfloor} изделий на 4-м этаже, понадобится {ts4.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_fifthfloor.Checked ? $"На монтаж {q_fifthfloor} изделий на 5-м этаже, понадобится {ts5.ToString(@"dd\дhh\чmm\м")}.\n" : null;
+                richTextBox1.Text += ch_secondfloor.Checked ? $"На подъем на 2-й этаж P={p_secondfloor}м. понадобится {t_up2f.ToString(@"dd\дhh\чmm\м")}.\n" : null;
+                richTextBox1.Text += ch_thirdfloor.Checked ? $"На подъем на 3-й этаж P={p_thirdfloor}м. понадобится {t_up3f.ToString(@"dd\дhh\чmm\м")}.\n" : null;
+                richTextBox1.Text += ch_fourthfloor.Checked ? $"На подъем на 4-й этаж P={p_fourthfloor}м. понадобится {t_up4f.ToString(@"dd\дhh\чmm\м")}.\n" : null;
+                richTextBox1.Text += ch_fifthfloor.Checked ? $"На подъем на 5-й этаж P={p_fifthfloor}м. понадобится {t_up5f.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += "\r\n";//строчный пробел
                 richTextBox1.Text += ch_firstfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 1-го этажа на {rain_f1.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_secondfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 2-го этажа на {rain_f2.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_thirdfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 3-го этажа на {rain_f3.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_fourthfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 4-го этажа на {rain_f4.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += ch_fifthfloor.Checked && o_conditions4.Checked ? $"Монтаж в дождливую погоду увеличивается для 5-го этажа на {rain_f5.ToString(@"dd\дhh\чmm\м")}.\n" : null;
-                richTextBox1.Text += o_conditions5.Checked ? $"На демонтаж P={p_dis}м2 потребуется {ts_dis.ToString(@"dd\дhh\чmm\м")}.\n" : null;
+                richTextBox1.Text += o_conditions6.Checked ? $"На демонтаж P={p_1wooddis}м. 1-й нитки в деревянном доме потребуется {ts_1wooddis.ToString(@"dd\дhh\чmm\м")}.\n" : null;
+                richTextBox1.Text += o_conditions7.Checked ? $"На демонтаж P={p_1concretedis}м. 1-й нитки в бетонном доме потребуется {ts_1concrete.ToString(@"dd\дhh\чmm\м")}.\n" : null;
+                richTextBox1.Text += o_conditions8.Checked ? $"На демонтаж P={p_2wooddis}м. 2-й нитки деревянных створок потребуется {ts_2wooddis.ToString(@"dd\дhh\чmm\м")}.\n" : null;
+                richTextBox1.Text += o_conditions9.Checked ? $"На демонтаж P={p_2concretedis}м. 2-й нитки ПВХ конструкций потребуется {ts_2concrete.ToString(@"dd\дhh\чmm\м")}.\n" : null;
                 richTextBox1.Text += "\r\n";//строчный пробел
                 richTextBox1.Text += $"Общее количество часов на монтаж = {ts_mounting.ToString(@"dd\дhh\чmm\м")}\r\n";
                 richTextBox1.Text += "\r\n";//строчный пробел
 
-                richTextBox1.Text += o_conditions5.Checked ? $"Общее количество часов на монтаж и демонтаж = {total_ts.ToString(@"dd\дhh\чmm\м")}" : null;
+                richTextBox1.Text += o_conditions5.Checked ? $"Общее количество часов на монтаж и демонтаж = {total_ts.ToString(@"dd\дhh\чmm\м")}\n" : null;
 
                 richTextBox1.Text += "\r";
-                richTextBox1.Text += "В расчет не включены:\n★Время на соединение конструкций между собой не учитываются, если таквые имеются;\n★Затраты на приемку и проверку груза;\n★Закупка материалов для монтажа;\n★Логистика;\n";
+                richTextBox1.Text += "В расчет не включены:\n★Время на соединение конструкций между собой не учитываются, если таковые имеются;\n★Затраты на приемку и проверку груза;\n★Закупка материалов для монтажа;\n★Логистика;\n";
                 richTextBox1.Text += "________________\r";
                 richTextBox1.Text += $"Дата расчета: {now_dt.ToLongDateString()}";
+
 
 
             }
@@ -699,16 +822,43 @@ namespace CWM
         {
             if (o_conditions5.Checked)
             {
-                textBox_o_conditions5.Enabled = true;
+                o_conditions6.Enabled = true;
+                o_conditions7.Enabled = true;
+                o_conditions8.Enabled = true;
+                o_conditions9.Enabled = true;
+
+
+                //textBox_o_conditions7.Enabled = true;
+                //textBox_o_conditions8.Enabled = true;
+                //textBox_o_conditions9.Enabled = true;
+
             }
             else
             {
-                textBox_o_conditions5.Enabled = false;
-                textBox_o_conditions5.Clear();
+                o_conditions6.Enabled = false;
+                o_conditions7.Enabled = false;
+                o_conditions8.Enabled = false;
+                o_conditions9.Enabled = false;
+                o_conditions6.Checked = false;
+                o_conditions7.Checked = false;
+                o_conditions8.Checked = false;
+                o_conditions9.Checked = false;
             }
         }
 
         private void textBox_o_conditions5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox_o_conditions7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox_o_conditions8_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox_o_conditions9_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -729,6 +879,58 @@ namespace CWM
         private void txt_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void logo_veka_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.veka.ru/");
+        }
+
+        private void logo_gu_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.g-u.ru/");
+        }
+
+        private void o_conditions6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (o_conditions6.Checked == true) textBox_o_conditions5.Enabled = true;
+            else
+            {
+                textBox_o_conditions5.Enabled = false;
+                textBox_o_conditions5.Clear();
+
+            }
+        }
+
+        private void o_conditions7_CheckedChanged(object sender, EventArgs e)
+        {
+            if (o_conditions7.Checked == true) textBox_o_conditions7.Enabled = true;
+            else
+            {
+                textBox_o_conditions7.Enabled = false;
+                textBox_o_conditions7.Clear();
+            }
+
+        }
+
+        private void o_conditions8_CheckedChanged(object sender, EventArgs e)
+        {
+            if (o_conditions8.Checked == true) textBox_o_conditions8.Enabled = true;
+            else
+            {
+                textBox_o_conditions8.Enabled = false;
+                textBox_o_conditions8.Clear();
+            }
+        }
+
+        private void o_conditions9_CheckedChanged(object sender, EventArgs e)
+        {
+            if (o_conditions9.Checked == true) textBox_o_conditions9.Enabled = true;
+            else
+            {
+                textBox_o_conditions9.Enabled = false;
+                textBox_o_conditions9.Clear();
+            }
         }
     }
 }
