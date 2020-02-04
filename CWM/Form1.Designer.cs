@@ -67,6 +67,7 @@
             this.ch_thirdfloor = new System.Windows.Forms.CheckBox();
             this.ch_firstfloor = new System.Windows.Forms.CheckBox();
             this.group_mounting_joint = new System.Windows.Forms.GroupBox();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -84,28 +85,54 @@
             this.label17 = new System.Windows.Forms.Label();
             this.textBox_m_conditions5 = new System.Windows.Forms.TextBox();
             this.group_other_conditions = new System.Windows.Forms.GroupBox();
+            this.o_conditions9 = new System.Windows.Forms.CheckBox();
+            this.o_conditions8 = new System.Windows.Forms.CheckBox();
+            this.o_conditions7 = new System.Windows.Forms.CheckBox();
+            this.o_conditions6 = new System.Windows.Forms.CheckBox();
+            this.textBox_o_conditions9 = new System.Windows.Forms.TextBox();
+            this.textBox_o_conditions8 = new System.Windows.Forms.TextBox();
+            this.textBox_o_conditions7 = new System.Windows.Forms.TextBox();
+            this.textBox_o_conditions5 = new System.Windows.Forms.TextBox();
+            this.o_conditions5 = new System.Windows.Forms.CheckBox();
             this.o_conditions4 = new System.Windows.Forms.CheckBox();
             this.o_conditions3 = new System.Windows.Forms.CheckBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.o_conditions2 = new System.Windows.Forms.CheckBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.o_conditions1 = new System.Windows.Forms.CheckBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.textBox_o_conditions1 = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label24 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.txt = new System.Windows.Forms.TextBox();
+            this.logo_gu = new System.Windows.Forms.PictureBox();
+            this.logo_veka = new System.Windows.Forms.PictureBox();
+            this.logo = new System.Windows.Forms.PictureBox();
             this.group_floors.SuspendLayout();
             this.group_mounting_joint.SuspendLayout();
             this.group_mounting_conditions.SuspendLayout();
             this.group_other_conditions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_gu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_veka)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.GreenYellow;
             this.button1.Location = new System.Drawing.Point(13, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(140, 40);
             this.button1.TabIndex = 0;
             this.button1.Text = "Рассчитать";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
@@ -155,7 +182,7 @@
             this.group_floors.Controls.Add(this.ch_secondfloor);
             this.group_floors.Controls.Add(this.ch_thirdfloor);
             this.group_floors.Controls.Add(this.ch_firstfloor);
-            this.group_floors.Location = new System.Drawing.Point(13, 60);
+            this.group_floors.Location = new System.Drawing.Point(13, 100);
             this.group_floors.Name = "group_floors";
             this.group_floors.Size = new System.Drawing.Size(286, 440);
             this.group_floors.TabIndex = 2;
@@ -471,16 +498,29 @@
             // 
             // group_mounting_joint
             // 
+            this.group_mounting_joint.Controls.Add(this.radioButton6);
             this.group_mounting_joint.Controls.Add(this.radioButton3);
             this.group_mounting_joint.Controls.Add(this.radioButton2);
             this.group_mounting_joint.Controls.Add(this.radioButton1);
-            this.group_mounting_joint.Location = new System.Drawing.Point(305, 60);
+            this.group_mounting_joint.Location = new System.Drawing.Point(305, 100);
             this.group_mounting_joint.Name = "group_mounting_joint";
-            this.group_mounting_joint.Size = new System.Drawing.Size(205, 120);
+            this.group_mounting_joint.Size = new System.Drawing.Size(215, 151);
             this.group_mounting_joint.TabIndex = 3;
             this.group_mounting_joint.TabStop = false;
-            this.group_mounting_joint.Text = "Монтажный шев";
+            this.group_mounting_joint.Text = "Монтажный шов";
             this.group_mounting_joint.Enter += new System.EventHandler(this.group_mounting_joint_Enter);
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(6, 115);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(115, 24);
+            this.radioButton6.TabIndex = 1;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "ПВХ уголки";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged_1);
             // 
             // radioButton3
             // 
@@ -540,7 +580,7 @@
             this.group_mounting_conditions.Controls.Add(this.textBox_m_conditions6);
             this.group_mounting_conditions.Controls.Add(this.label17);
             this.group_mounting_conditions.Controls.Add(this.textBox_m_conditions5);
-            this.group_mounting_conditions.Location = new System.Drawing.Point(305, 186);
+            this.group_mounting_conditions.Location = new System.Drawing.Point(306, 257);
             this.group_mounting_conditions.Name = "group_mounting_conditions";
             this.group_mounting_conditions.Size = new System.Drawing.Size(320, 314);
             this.group_mounting_conditions.TabIndex = 5;
@@ -580,6 +620,7 @@
             this.m_conditions6.TabIndex = 4;
             this.m_conditions6.Text = "Примат";
             this.m_conditions6.UseVisualStyleBackColor = true;
+            this.m_conditions6.CheckedChanged += new System.EventHandler(this.m_conditions6_CheckedChanged);
             // 
             // m_conditions5
             // 
@@ -654,31 +695,136 @@
             this.textBox_m_conditions5.Name = "textBox_m_conditions5";
             this.textBox_m_conditions5.Size = new System.Drawing.Size(80, 26);
             this.textBox_m_conditions5.TabIndex = 4;
+            this.textBox_m_conditions5.TextChanged += new System.EventHandler(this.textBox_m_conditions5_TextChanged);
             // 
             // group_other_conditions
             // 
+            this.group_other_conditions.Controls.Add(this.o_conditions9);
+            this.group_other_conditions.Controls.Add(this.o_conditions8);
+            this.group_other_conditions.Controls.Add(this.o_conditions7);
+            this.group_other_conditions.Controls.Add(this.o_conditions6);
+            this.group_other_conditions.Controls.Add(this.textBox_o_conditions9);
+            this.group_other_conditions.Controls.Add(this.textBox_o_conditions8);
+            this.group_other_conditions.Controls.Add(this.textBox_o_conditions7);
+            this.group_other_conditions.Controls.Add(this.textBox_o_conditions5);
+            this.group_other_conditions.Controls.Add(this.o_conditions5);
             this.group_other_conditions.Controls.Add(this.o_conditions4);
             this.group_other_conditions.Controls.Add(this.o_conditions3);
+            this.group_other_conditions.Controls.Add(this.label32);
             this.group_other_conditions.Controls.Add(this.o_conditions2);
+            this.group_other_conditions.Controls.Add(this.label30);
             this.group_other_conditions.Controls.Add(this.o_conditions1);
+            this.group_other_conditions.Controls.Add(this.label31);
+            this.group_other_conditions.Controls.Add(this.label28);
+            this.group_other_conditions.Controls.Add(this.label29);
             this.group_other_conditions.Controls.Add(this.textBox_o_conditions1);
+            this.group_other_conditions.Controls.Add(this.label27);
+            this.group_other_conditions.Controls.Add(this.label25);
+            this.group_other_conditions.Controls.Add(this.label26);
             this.group_other_conditions.Controls.Add(this.label19);
-            this.group_other_conditions.Location = new System.Drawing.Point(632, 60);
+            this.group_other_conditions.Location = new System.Drawing.Point(632, 100);
             this.group_other_conditions.Name = "group_other_conditions";
-            this.group_other_conditions.Size = new System.Drawing.Size(280, 440);
+            this.group_other_conditions.Size = new System.Drawing.Size(280, 471);
             this.group_other_conditions.TabIndex = 6;
             this.group_other_conditions.TabStop = false;
             this.group_other_conditions.Text = "Прочие условия";
             this.group_other_conditions.Enter += new System.EventHandler(this.group_other_conditions_Enter);
+            // 
+            // o_conditions9
+            // 
+            this.o_conditions9.AutoSize = true;
+            this.o_conditions9.Location = new System.Drawing.Point(24, 388);
+            this.o_conditions9.Name = "o_conditions9";
+            this.o_conditions9.Size = new System.Drawing.Size(137, 24);
+            this.o_conditions9.TabIndex = 13;
+            this.o_conditions9.Text = "2-я нитка ПВХ";
+            this.o_conditions9.UseVisualStyleBackColor = true;
+            this.o_conditions9.CheckedChanged += new System.EventHandler(this.o_conditions9_CheckedChanged);
+            // 
+            // o_conditions8
+            // 
+            this.o_conditions8.AutoSize = true;
+            this.o_conditions8.Location = new System.Drawing.Point(24, 327);
+            this.o_conditions8.Name = "o_conditions8";
+            this.o_conditions8.Size = new System.Drawing.Size(159, 24);
+            this.o_conditions8.TabIndex = 12;
+            this.o_conditions8.Text = "2-я нитка дерево";
+            this.o_conditions8.UseVisualStyleBackColor = true;
+            this.o_conditions8.CheckedChanged += new System.EventHandler(this.o_conditions8_CheckedChanged);
+            // 
+            // o_conditions7
+            // 
+            this.o_conditions7.AutoSize = true;
+            this.o_conditions7.Location = new System.Drawing.Point(24, 271);
+            this.o_conditions7.Name = "o_conditions7";
+            this.o_conditions7.Size = new System.Drawing.Size(234, 24);
+            this.o_conditions7.TabIndex = 11;
+            this.o_conditions7.Text = "1-я нитка в бетонном доме";
+            this.o_conditions7.UseVisualStyleBackColor = true;
+            this.o_conditions7.CheckedChanged += new System.EventHandler(this.o_conditions7_CheckedChanged);
+            // 
+            // o_conditions6
+            // 
+            this.o_conditions6.AutoSize = true;
+            this.o_conditions6.Location = new System.Drawing.Point(24, 210);
+            this.o_conditions6.Name = "o_conditions6";
+            this.o_conditions6.Size = new System.Drawing.Size(254, 24);
+            this.o_conditions6.TabIndex = 10;
+            this.o_conditions6.Text = "1-я нитка в деревянном доме";
+            this.o_conditions6.UseVisualStyleBackColor = true;
+            this.o_conditions6.CheckedChanged += new System.EventHandler(this.o_conditions6_CheckedChanged);
+            // 
+            // textBox_o_conditions9
+            // 
+            this.textBox_o_conditions9.Location = new System.Drawing.Point(114, 414);
+            this.textBox_o_conditions9.Name = "textBox_o_conditions9";
+            this.textBox_o_conditions9.Size = new System.Drawing.Size(79, 26);
+            this.textBox_o_conditions9.TabIndex = 9;
+            this.textBox_o_conditions9.TextChanged += new System.EventHandler(this.textBox_o_conditions9_TextChanged);
+            // 
+            // textBox_o_conditions8
+            // 
+            this.textBox_o_conditions8.Location = new System.Drawing.Point(114, 355);
+            this.textBox_o_conditions8.Name = "textBox_o_conditions8";
+            this.textBox_o_conditions8.Size = new System.Drawing.Size(79, 26);
+            this.textBox_o_conditions8.TabIndex = 9;
+            this.textBox_o_conditions8.TextChanged += new System.EventHandler(this.textBox_o_conditions8_TextChanged);
+            // 
+            // textBox_o_conditions7
+            // 
+            this.textBox_o_conditions7.Location = new System.Drawing.Point(114, 295);
+            this.textBox_o_conditions7.Name = "textBox_o_conditions7";
+            this.textBox_o_conditions7.Size = new System.Drawing.Size(79, 26);
+            this.textBox_o_conditions7.TabIndex = 9;
+            this.textBox_o_conditions7.TextChanged += new System.EventHandler(this.textBox_o_conditions7_TextChanged);
+            // 
+            // textBox_o_conditions5
+            // 
+            this.textBox_o_conditions5.Location = new System.Drawing.Point(114, 236);
+            this.textBox_o_conditions5.Name = "textBox_o_conditions5";
+            this.textBox_o_conditions5.Size = new System.Drawing.Size(79, 26);
+            this.textBox_o_conditions5.TabIndex = 9;
+            this.textBox_o_conditions5.TextChanged += new System.EventHandler(this.textBox_o_conditions5_TextChanged);
+            // 
+            // o_conditions5
+            // 
+            this.o_conditions5.AutoSize = true;
+            this.o_conditions5.Location = new System.Drawing.Point(6, 179);
+            this.o_conditions5.Name = "o_conditions5";
+            this.o_conditions5.Size = new System.Drawing.Size(107, 24);
+            this.o_conditions5.TabIndex = 8;
+            this.o_conditions5.Text = "Демонтаж";
+            this.o_conditions5.UseVisualStyleBackColor = true;
+            this.o_conditions5.CheckedChanged += new System.EventHandler(this.o_conditions5_CheckedChanged);
             // 
             // o_conditions4
             // 
             this.o_conditions4.AutoSize = true;
             this.o_conditions4.Location = new System.Drawing.Point(6, 148);
             this.o_conditions4.Name = "o_conditions4";
-            this.o_conditions4.Size = new System.Drawing.Size(183, 24);
+            this.o_conditions4.Size = new System.Drawing.Size(238, 24);
             this.o_conditions4.TabIndex = 0;
-            this.o_conditions4.Text = "Вероятность дождя";
+            this.o_conditions4.Text = "Вероятность дождя (+20%)";
             this.o_conditions4.UseVisualStyleBackColor = true;
             // 
             // o_conditions3
@@ -690,6 +836,17 @@
             this.o_conditions3.TabIndex = 0;
             this.o_conditions3.Text = "Мытье профиля, стекол";
             this.o_conditions3.UseVisualStyleBackColor = true;
+            this.o_conditions3.CheckedChanged += new System.EventHandler(this.o_conditions3_CheckedChanged);
+            // 
+            // label32
+            // 
+            this.label32.AutoEllipsis = true;
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(24, 420);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(86, 20);
+            this.label32.TabIndex = 7;
+            this.label32.Text = "Периметр";
             // 
             // o_conditions2
             // 
@@ -700,6 +857,17 @@
             this.o_conditions2.TabIndex = 0;
             this.o_conditions2.Text = "Уборка рабочего места";
             this.o_conditions2.UseVisualStyleBackColor = true;
+            this.o_conditions2.CheckedChanged += new System.EventHandler(this.o_conditions2_CheckedChanged);
+            // 
+            // label30
+            // 
+            this.label30.AutoEllipsis = true;
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(24, 361);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(86, 20);
+            this.label30.TabIndex = 7;
+            this.label30.Text = "Периметр";
             // 
             // o_conditions1
             // 
@@ -712,6 +880,34 @@
             this.o_conditions1.UseVisualStyleBackColor = true;
             this.o_conditions1.CheckedChanged += new System.EventHandler(this.o_conditions1_CheckedChanged);
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(196, 420);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(24, 20);
+            this.label31.TabIndex = 7;
+            this.label31.Text = "м.";
+            // 
+            // label28
+            // 
+            this.label28.AutoEllipsis = true;
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(24, 301);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(86, 20);
+            this.label28.TabIndex = 7;
+            this.label28.Text = "Периметр";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(196, 361);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(24, 20);
+            this.label29.TabIndex = 7;
+            this.label29.Text = "м.";
+            // 
             // textBox_o_conditions1
             // 
             this.textBox_o_conditions1.Location = new System.Drawing.Point(6, 86);
@@ -719,6 +915,34 @@
             this.textBox_o_conditions1.Size = new System.Drawing.Size(80, 26);
             this.textBox_o_conditions1.TabIndex = 4;
             this.textBox_o_conditions1.TextChanged += new System.EventHandler(this.textBox_o_conditions1_TextChanged);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(196, 301);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(24, 20);
+            this.label27.TabIndex = 7;
+            this.label27.Text = "м.";
+            // 
+            // label25
+            // 
+            this.label25.AutoEllipsis = true;
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(24, 242);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(86, 20);
+            this.label25.TabIndex = 7;
+            this.label25.Text = "Периметр";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(196, 242);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(24, 20);
+            this.label26.TabIndex = 7;
+            this.label26.Text = "м.";
             // 
             // label19
             // 
@@ -731,9 +955,12 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(13, 507);
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(0, 577);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(899, 450);
+            this.richTextBox1.Size = new System.Drawing.Size(944, 84);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
@@ -742,17 +969,83 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label24.Location = new System.Drawing.Point(803, 960);
+            this.label24.Location = new System.Drawing.Point(803, 8);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(109, 16);
             this.label24.TabIndex = 8;
             this.label24.Text = "© Ishibashi Kouto";
             // 
+            // button3
+            // 
+            this.button3.AutoEllipsis = true;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button3.Location = new System.Drawing.Point(305, 13);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(131, 40);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Сохранить в файл";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // txt
+            // 
+            this.txt.BackColor = System.Drawing.SystemColors.Info;
+            this.txt.Location = new System.Drawing.Point(13, 68);
+            this.txt.Name = "txt";
+            this.txt.Size = new System.Drawing.Size(423, 26);
+            this.txt.TabIndex = 12;
+            this.txt.TextChanged += new System.EventHandler(this.txt_TextChanged);
+            // 
+            // logo_gu
+            // 
+            this.logo_gu.AccessibleRole = System.Windows.Forms.AccessibleRole.Link;
+            this.logo_gu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.logo_gu.Image = global::CWM.Properties.Resources.GU;
+            this.logo_gu.Location = new System.Drawing.Point(617, 13);
+            this.logo_gu.Name = "logo_gu";
+            this.logo_gu.Size = new System.Drawing.Size(74, 74);
+            this.logo_gu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_gu.TabIndex = 14;
+            this.logo_gu.TabStop = false;
+            this.logo_gu.Click += new System.EventHandler(this.logo_gu_Click);
+            // 
+            // logo_veka
+            // 
+            this.logo_veka.AccessibleRole = System.Windows.Forms.AccessibleRole.Link;
+            this.logo_veka.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.logo_veka.Image = global::CWM.Properties.Resources.veka;
+            this.logo_veka.Location = new System.Drawing.Point(537, 13);
+            this.logo_veka.Name = "logo_veka";
+            this.logo_veka.Size = new System.Drawing.Size(74, 74);
+            this.logo_veka.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_veka.TabIndex = 13;
+            this.logo_veka.TabStop = false;
+            this.logo_veka.Click += new System.EventHandler(this.logo_veka_Click);
+            // 
+            // logo
+            // 
+            this.logo.AccessibleRole = System.Windows.Forms.AccessibleRole.Link;
+            this.logo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.logo.Image = global::CWM.Properties.Resources.logo;
+            this.logo.InitialImage = null;
+            this.logo.Location = new System.Drawing.Point(457, 13);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(74, 74);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo.TabIndex = 11;
+            this.logo.TabStop = false;
+            this.logo.Click += new System.EventHandler(this.logo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 961);
+            this.ClientSize = new System.Drawing.Size(944, 661);
+            this.Controls.Add(this.logo_gu);
+            this.Controls.Add(this.logo_veka);
+            this.Controls.Add(this.txt);
+            this.Controls.Add(this.logo);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.group_other_conditions);
@@ -763,6 +1056,8 @@
             this.Controls.Add(this.button1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(960, 650);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Калькулятор монтажных часов";
@@ -775,6 +1070,9 @@
             this.group_mounting_conditions.PerformLayout();
             this.group_other_conditions.ResumeLayout(false);
             this.group_other_conditions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_gu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_veka)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -846,6 +1144,29 @@
         private System.Windows.Forms.CheckBox ch_fifthfloor;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox textBox_o_conditions5;
+        private System.Windows.Forms.CheckBox o_conditions5;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.TextBox txt;
+        private System.Windows.Forms.PictureBox logo_veka;
+        private System.Windows.Forms.PictureBox logo_gu;
+        private System.Windows.Forms.CheckBox o_conditions9;
+        private System.Windows.Forms.CheckBox o_conditions8;
+        private System.Windows.Forms.CheckBox o_conditions7;
+        private System.Windows.Forms.CheckBox o_conditions6;
+        private System.Windows.Forms.TextBox textBox_o_conditions9;
+        private System.Windows.Forms.TextBox textBox_o_conditions8;
+        private System.Windows.Forms.TextBox textBox_o_conditions7;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label27;
     }
 }
 
